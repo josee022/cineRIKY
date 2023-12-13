@@ -13,4 +13,21 @@ class Pelicula extends Model
     {
         return $this->hasMany(Proyeccion::class);
     }
+
+    public function entradas()
+    {
+        // return $this->hasManyThrough(Entrada::class, Proyeccion::class);
+        return $this->through('proyecciones')->has('entradas');
+    }
+
+    public function cantidadEntradas()
+    {
+        $total = 0;
+
+        foreach ($this->proyecciones as $proyeccion) {
+            $total += $proyeccion->entradas->count();
+        }
+
+        return $total;
+    }
 }

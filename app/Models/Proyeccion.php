@@ -9,6 +9,8 @@ class Proyeccion extends Model
 {
     use HasFactory;
 
+    protected $table = 'proyecciones';
+
     public function pelicula()
     {
         return $this->belongsTo(Pelicula::class);
